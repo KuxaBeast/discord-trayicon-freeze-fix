@@ -1,4 +1,4 @@
-.PHONY: all install clean
+.PHONY: all install uninstall clean
 
 version = 0.0.16
 discord_path = $(HOME)/.config/discord
@@ -17,6 +17,10 @@ core_patched.asar: core/
 install: core_patched.asar
 	install -m644 core_patched.asar $(target_dir)/
 	sed -i 's|\./core\.asar|\./core_patched\.asar|g' $(target_dir)/index.js
+
+uninstall:
+	rm -r $(target_dir)/core_patched.asar
+	sed -i 's|\./core_patched\.asar|\./core\.asar|g' $(target_dir)/index.js
 
 clean:
 	-rm -r core/ core_patched.asar
