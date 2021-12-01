@@ -1,0 +1,22 @@
+--- a/app/systemTray.js
++++ b/app/systemTray.js
+@@ -150,6 +150,7 @@
+   contextMenu = [menuItems[MenuItems.SECRET], separator, ...(hasApplications ? [...applications, separator] : []), menuItems[MenuItems.OPEN], menuItems[MenuItems.MUTE], menuItems[MenuItems.DEAFEN], menuItems[MenuItems.VOICE_SETTINGS], menuItems[MenuItems.CHECK_UPDATE], menuItems[MenuItems.ACKNOWLEDGEMENTS], separator, menuItems[MenuItems.QUIT]];
+ }
+ 
++let lastSetIcon;
+ function setTrayIcon(icon) {
+   // Keep track of last set icon
+   currentIcon = trayIcons[icon]; // If icon is null, hide the tray icon.  Otherwise show
+@@ -162,6 +163,11 @@
+     show();
+   } // Keep mute/deafen menu items in sync with client, based on icon states
+ 
++  if (lastSetIcon == currentIcon) {
++    return;
++  } else {
++    lastSetIcon = currentIcon;
++  }
+ 
+   const muteIndex = contextMenu.indexOf(menuItems[MenuItems.MUTE]);
+   const deafenIndex = contextMenu.indexOf(menuItems[MenuItems.DEAFEN]);
