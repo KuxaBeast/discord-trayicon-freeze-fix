@@ -1,9 +1,9 @@
 .PHONY: all install uninstall clean
 
-version = 0.0.16
-discord_path = $(HOME)/.config/discord
+version = 0.0.20
+DISCORD_PATH ?= $(HOME)/.config/discord/$(version)
 
-target_dir = $(discord_path)/$(version)/modules/discord_desktop_core
+target_dir = $(DISCORD_PATH)/modules/discord_desktop_core
 
 all: core_patched.asar
 
