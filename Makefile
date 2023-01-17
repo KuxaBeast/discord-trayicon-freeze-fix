@@ -1,7 +1,7 @@
 .PHONY: all install uninstall clean
 
-version = 0.0.20
-DISCORD_PATH ?= $(HOME)/.config/discord/$(version)
+VERSION ?= 0.0.23
+DISCORD_PATH ?= $(HOME)/.config/discord/$(VERSION)
 
 target_dir = $(DISCORD_PATH)/modules/discord_desktop_core
 
